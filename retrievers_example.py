@@ -13,11 +13,10 @@ llm = ollama.Ollama(model='llama2')
 # Retrievers
 loader = WebBaseLoader("https://docs.smith.langchain.com/overview")
 docs = loader.load()
-
-embeddings = OllamaEmbeddings()
-
 text_splitter = RecursiveCharacterTextSplitter()
 documents = text_splitter.split_documents(docs)
+
+embeddings = OllamaEmbeddings()
 vector = FAISS.from_documents(documents, embeddings)
 
 # Document Chain creation
